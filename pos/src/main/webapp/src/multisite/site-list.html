@@ -1,0 +1,17 @@
+<template>
+    <div class="row">
+     <h2>${heading}</h2>
+  ${getSiteList()}
+    <div>
+      <div class="col-sm-4 col-md-4" repeat.for="site of sites">
+      <div class="msite-img">
+          <img src="images/site.jpg"
+               class="img-rounded">
+          <div style="text-align:center">
+            ${site.siteName}
+          </div>
+      </div>
+    </div>
+    </div>
+    </div>
+</template>

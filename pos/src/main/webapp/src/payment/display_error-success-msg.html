@@ -1,0 +1,12 @@
+<template>
+      
+	<div class="alert alert-success" if.bind="status.title=='success'">
+		<strong></span>Status : ${status.title}</strong><br> <strong></span>detail
+			: </strong>${status.message}
+	</div>
+	<div class="alert alert-warning" if.bind="status.title=='error'">
+		<strong></span>Status : ${status.title}</strong><br> <strong></span>detail
+			: </strong>${status.message}
+	</div>
+	
+</template>

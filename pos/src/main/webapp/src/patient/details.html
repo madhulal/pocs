@@ -1,0 +1,44 @@
+<template>
+
+<h1> ${Heading1}</h1>
+<div class="container-fluid well span6">
+	<div class="row-fluid">
+        
+        
+        <div class="span8">
+        	<h3>RCCNo: ${patient.patientNo}</h3>
+            <h6>Name :${patient.patientName}</h6>
+            <h6>Address:${patient.patientAddress.postCode},${patient.patientAddress.district},${patient.patientAddress.state}</h6>
+            
+            
+        </div> 
+        <div class="span2">
+            
+        </div>
+	</div>
+</div>
+<h1> ${Heading2}</h1>
+<div class="container-fluid well span6">
+	<div class="table-responsive ">
+	<table class="table table-striped table-hover">
+		<thead>
+			<tr>
+				<th>RCC</th>
+				<th>Date</th>
+				<th>Voucher</th>
+				<th>Amount</th>
+				
+			</tr>
+		</thead>
+		<tbody repeat.for="recentPayment of payments">
+			<tr>
+				<td>${recentPayment.patientNo}</td>
+				<td>${recentPayment.paymentDate}</td>
+				<td>${recentPayment.paymentNo}</td>
+				<td>${recentPayment.paymentAmount}</td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+</div>
+</template>

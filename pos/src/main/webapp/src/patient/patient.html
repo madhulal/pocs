@@ -1,0 +1,28 @@
+<template>
+       <h1 class="page-header">${heading}</h1>
+    
+    <div class=" well well-sm "  if.bind="patients!=''">
+   		<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Patient No</th>
+				<th>Name</th>
+				<th>Address</th>
+				
+			</tr>
+		</thead>
+		<tbody repeat.for="patient of patients">
+			<tr>
+				<td><a route-href="route: details; params.bind: {id:patient.patientNo}" > ${patient.patientNo}</a></td>
+				<td>${patient.patientName}</td>
+				<td>${patient.patientAddress.postCode},${patient.patientAddress.district},${patient.patientAddress.state}</td>
+			</tr>
+		</tbody>
+	</table>   
+        </div>
+        <div class=" well well-sm" if.bind="patients==''">
+       No patient....please register and Try again..
+        </div>
+   
+    
+</template>

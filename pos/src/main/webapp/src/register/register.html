@@ -1,0 +1,161 @@
+<template>
+
+<div>
+	<form role="form"  validate.bind="validation">
+<table>
+	<tr>
+	<div class="form-group">
+		<td>UserName</td>
+		<td><input type="text" value.bind='userName' class="form-control" class="form-control"><label></label></td>		</div>
+	</tr>
+	<tr>
+		<td>Password</td>
+		<td><input type="password" value.bind='passWord' class="form-control"></td>	
+	</tr>
+	<tr>
+		<td>First Name</td>
+		<td><input type="text" value.bind='firstName' class="form-control" ></td>	
+	</tr>
+	<tr>
+		<td>Middle Name</td>
+		<td><input type="text" value.bind="middleName" class="form-control" ></td> 
+	</tr> 
+	<tr>
+		<td>LastName</td>
+		<td><input type="text" value.bind="lastName" class="form-control"></td> 
+	</tr>
+	<tr>
+		<td>Gender</td>
+		<td><input type="radio" value.bind="gender" value="Male" >Male</td>
+		<td><input type="radio" value.bind="gender" value="female" >Female</td> 
+	</tr>
+	<tr>
+		<td>Martial Status</td>
+		<td><input type="radio" value.bind="martialStatus" value="single"  >Single</td>
+		<td><input type="radio" value.bind="martialStatus" value="married" >Married</td> 
+	</tr>
+	<tr>
+		<td>Date Of Birth</td>
+		<td><input type="date"   value.bind="dateOfBirth" class="form-control" ></td>
+
+	</tr>
+	  <tr>
+		<td>Contact Number - work</td>
+		<td><input type="text"  value.bind="contactNumber" ></td> 
+	</tr>
+		
+
+	<tr>
+		<td>Contact Number - cell</td>
+		<td><input type="text"  name="contactNumbers['cell'].contactNumber"></td> 
+		<td><springForm:errors path="contactNumbers['cell'].contactNumber" cssClass="error" /></td>
+
+	</tr>
+		<tr>
+		<td>Contact Number - home</td>
+		<td><input type="number" name="contactNumbers['home'].contactNumber" ></td> 
+		<td><springForm:errors path="contactNumbers['home'].contactNumber" cssClass="error" /></td>
+	
+	</tr>  
+	
+	
+	
+	<tr>
+	<td><b><u>Home Address</u></b></td>
+	</tr>
+	<tr> 
+		<td>AddressLine1</td>
+		<td><input type="text"  name="addresses['home'].addressLine1"></td> 
+		<td><springForm:errors path="addresses['home'].addressLine1" cssClass="error" /></td>
+	</tr>
+	<tr>
+		<td>AddressLine2</td>
+		<td><input type="text"  name="addresses['home'].addressLine2"></td>
+		<td><springForm:errors path="addresses['home'].addressLine2" cssClass="error" /></td> 
+	</tr>
+	<tr>
+		<td>AddressLine3 (Optional)</td>
+		<td><input type="text"  name="addresses['home'].addressLine3"></td> 
+		<td><springForm:errors path="addresses['home'].addressLine3" cssClass="error" /></td>
+	</tr>
+		<tr>
+		<td>City</td>
+		<td><input type="text"  name="addresses['home'].city"></td> 
+		<td><springForm:errors path="addresses['home'].city" cssClass="error" /></td>
+	</tr>
+	<tr>
+		<td>State</td>
+		<td><input type="text"  name="addresses['home'].state"></td> 
+		<td><springForm:errors path="addresses['home'].state" cssClass="error" /></td>
+		
+	</tr>
+	<tr>
+		<td>Post</td>
+		<td><input type="text"  name="addresses['home'].post">
+		<td><springForm:errors path="addresses['home'].post" cssClass="error" /></td>
+		
+	</tr>
+	<tr>
+		<td>Country</td>
+		<td><input type="text"   name="addresses['home'].country"></td> 
+		<td><springForm:errors path="addresses['home'].country" cssClass="error" /></td>
+		
+		
+	</tr>
+	<tr>
+	<td><b><u>Work Address</u></b></td>
+	</tr>
+	<tr> 
+		<td>AddressLine1</td>
+		<td><input type="text"  name="addresses['work'].addressLine1"></td>
+		 <td><springForm:errors path="addresses['work'].addressLine1" cssClass="error" /></td>
+		
+	</tr>
+	<tr>
+		<td>AddressLine2</td>
+		<td><input type="text"  name="addresses['work'].addressLine2"></td> 
+		<td><springForm:errors path="addresses['work'].addressLine2" cssClass="error" /></td>
+		
+	</tr>
+	<tr>
+		<td>AddressLine3 (Optional)</td>
+		<td><input type="text"  name="addresses['work'].addressLine3"></td> 
+		<td><springForm:errors path="addresses['work'].addressLine3" cssClass="error" /></td>
+		
+	</tr>
+		<tr>
+		<td>City</td>
+		<td><input type="text"  name="addresses['work'].city"></td> 
+		<td><springForm:errors path="addresses['work'].city" cssClass="error" /></td>
+		
+	</tr>
+	<tr>
+		<td>State</td>
+		<td><input type="text"  name="addresses['work'].state"></td>
+		<td><springForm:errors path="addresses['work'].state" cssClass="error" /></td>
+		 
+	</tr>
+	<tr>
+		<td>Post</td>
+		<td><input type="text"  name="addresses['work'].post"></td> 
+		<td><springForm:errors path="addresses['work'].post" cssClass="error" /></td>
+		
+	</tr>
+	<tr>
+		<td>Country</td>
+		<td><input type="text"   name="addresses['work'].country"></td> 
+		<td><springForm:errors path="addresses['work'].country" cssClass="error" /></td>
+		
+	</tr> 
+	<tr>
+		<td></td>
+		<td><input type="submit" click.delegate="createUser()"
+						name="register-submit" id="register-submit"
+						class="form-control btn btn-register btn-right"
+						value="Register" ></td>
+	</tr>
+</table>
+</form>
+</div>
+
+</template>

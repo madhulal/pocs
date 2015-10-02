@@ -1,0 +1,17 @@
+node_modules
+jspm_packages
+bower_components
+.idea
+.DS_STORE
+.gradle
+build
+out
+bin
+target
+data
+dist
+**generated
+.iml
+.classpath
+.project
+.settings

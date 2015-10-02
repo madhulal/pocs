@@ -1,0 +1,119 @@
+<template> <require from='payment/recent_transaction'></require>
+<require from="payment/display-cashInfo"></require>
+ <require from="payment/display_error-success-msg"></require>
+
+<h1 class="page-header">${heading}</h1>
+<div class="container-fluid">
+	<display-amount amount.bind="cashInfo" today.bind="today"></display-amount>
+</div>
+<div if.bind="!cashInfo.balance=='0' " class="container-fluid">
+	<form role="form"  validate.bind="validation">
+		<div class=" row well well-sm">
+			<div class=" col-sm-4">
+					<div  class="form-group">
+						<input type="text" keyup.trigger="searchUser()" id="patientNo"
+						tabindex="1" class="form-control" placeholder="patientNo" value=""
+						value.bind="patientNo">
+						<label for="patientNo"></label>
+					</div>
+			</div>
+			<div class=" col-sm-4">
+					<div div class="form-group">	 
+						<input type="number" id="PaymentAmount" tabindex="1"
+						class="form-control" placeholder="PaymentAmount" value=""  
+						value.bind="paymentAmount"> 
+						<label for="PaymentAmount"></label>
+					</div>
+			</div>
+			<div class=" col-sm-4">
+					<div div class="form-group">
+						
+						<input type="number" id="PaymentNo" tabindex="1" keyup.trigger="isexist()" 
+						class="form-control" placeholder="PaymentNo" value=""
+						value.bind="paymentNo">
+						<label for="PaymentNo"></label>
+					</div>
+			</div>
+		</div>
+		<div class="row well well-sm">
+
+			<div class=" col-sm-4">
+				<div  class="form-group">
+					
+					<input type="text" id="PatientName" tabindex="1"
+						class="form-control" placeholder="PatientName" value=""
+						value.bind="patientName">
+						<label for="PatientName"></label>
+				</div>
+
+			</div>
+			<div class=" col-sm-4">
+				<div  class="form-group">
+					
+					<input type="text" id="PatientAddress" tabindex="1"
+						class="form-control" placeholder="POST CODE" value=""
+						value.bind="patientAddress.postCode">
+						<label for="PatientAddress"></label>
+				</div>
+				<div  class="form-group">
+					
+					<input type="text" id="PatientAddress" tabindex="1"
+						class="form-control" placeholder="District" value=""
+						value.bind="patientAddress.district">
+						<label for="PatientAddress"></label>
+				</div>
+				<div  class="form-group">
+					
+					<input type="text" id="PatientAddress" tabindex="1"
+						class="form-control" placeholder="State" value=""
+						value.bind="patientAddress.state">
+						<label for="PatientAddress"></label>
+				</div>
+			</div>
+			<div class=" col-sm-4">
+				<div if.bind="patient.patientName==null"  >
+				   
+					<input type="submit" click.delegate="createUser()"
+						name="register-submit" id="register-submit"
+						class="form-control btn btn-register btn-right"
+						value="Register And Pay" disabled.bind="!validation.result.isValid">
+				</div>
+				<div if.bind="!patient.patientName==''"  >
+				 
+					<input type="submit" click.delegate="updatePayment();"
+						name="add-submit" id="add-submit"
+						class="form-control btn btn-register btn-right"
+						value="Payment" disabled.bind="!validation.result.isValid" >
+				</div>
+
+			</div>
+
+		</div>
+
+	</form>
+      <div>
+		<display-error-success status.bind="status"> </display-error-success>
+	  </div>
+
+
+	<div class=" row well well-sm " if.bind="!patient.patientName==''">
+     
+		<recent_transaction cash.bind="cashInfo" Payments.bind="payments"
+			patientno.bind="patient.patientNo"> </recent_transaction>
+
+	</div>
+
+	<!-- importing recent transaction -->
+
+	<div class=" row well well-sm " if.bind="patientNo==''">
+
+		<recent_transaction cash.bind="cashInfo"> </recent_transaction>
+
+	</div>
+
+</div>
+<div if.bind="cashInfo.balance=='0'">
+	
+</div>
+
+</template>

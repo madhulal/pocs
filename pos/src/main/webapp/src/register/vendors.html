@@ -1,0 +1,102 @@
+<template>
+
+<div><h1>Vendors Registration</h1></div>
+<div>
+			<div class=" col-sm-4">
+					<div div class="form-group">
+						
+						<input type="text"  tabindex="1" 
+						class="form-control" placeholder="Vendors Name" value=""
+						value.bind="name">
+					
+					</div>
+			</div>
+			
+			<div class=" col-sm-4">
+					<div div class="form-group">
+						
+						<input type="text"  tabindex="1" 
+						class="form-control" placeholder="addressLine1" value=""
+						value.bind="address.addressLine1">
+						
+					</div>
+			</div>
+				<div class=" col-sm-4">
+					<div div class="form-group">
+						
+						<input type="text"  tabindex="1" 
+						class="form-control" placeholder="addressLine2" value=""
+						value.bind="address.addressLine2">
+						
+					</div>
+				</div>
+
+			<div class="row" >
+				<div class=" col-sm-4">
+					<div class="form-group">
+						<input type="text" tabindex="5" class="form-control"
+							placeholder="addressLine3" value="" value.bind="address.addressLine3"><label ></label>
+					</div>
+				</div>
+				<div class=" col-sm-4">
+					<div class="form-group">
+						<input type="email" tabindex="6" class="form-control"
+							placeholder="city" value="" value.bind="address.city"><label ></label>
+					</div>
+				</div>
+				<div class=" col-sm-4">
+					<div class="form-group">
+						<input type="email" tabindex="6" class="form-control"
+							placeholder="state" value="" value.bind="address.state"><label ></label>
+					</div>
+				</div>
+			</div>
+			
+				<div class=" col-sm-4">
+					<div class="form-group">
+						<input type="text" tabindex="5" class="form-control"
+							placeholder="post" value="" value.bind="address.post"><label ></label>
+					</div>
+				</div>
+				<div class=" col-sm-4">
+					<div class="form-group">
+						<input type="email" tabindex="6" class="form-control"
+							placeholder="country" value="" value.bind="address.country"><label ></label>
+					</div>
+				</div>
+				<div class=" col-sm-4">
+					<div class="form-group">
+						<input type="email" tabindex="6" class="form-control"
+							placeholder="emailId" value="" value.bind="emailId"><label ></label>
+					</div>
+				</div>
+			
+				<div class=" col-sm-4">
+					<div class="form-group">
+						<input type="text" tabindex="5" class="form-control"
+							placeholder="contactNumber1" value="" value.bind="contactNumber.contactNumber1"><label ></label>
+					</div>
+				</div>
+				<div class=" col-sm-4">
+					<div class="form-group">
+						<input type="email" tabindex="6" class="form-control"
+							placeholder="contactNumber2" value="" value.bind="contactNumber.contactNumber2"><label ></label>
+					</div>
+				</div>
+				<div class=" col-sm-4">
+					<div class="form-group">
+						<input type="email" tabindex="6" class="form-control"
+							placeholder="contactNumber3" value="" value.bind="contactNumber.contactNumber3"><label ></label>
+					</div>
+				</div>
+					<div >
+				   
+					<input type="submit" click.delegate="registerVendors()"
+						name="register-submit" id="register-submit"
+						class="form-control btn btn-register btn-right"
+						value="Register Organization" >
+				</div>
+			
+				
+</div>
+</template>
