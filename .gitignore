@@ -11,7 +11,7 @@ target
 data
 dist
 **generated
-.iml
-.classpath
-.project
+*.iml
+*.classpath
+*.project
 .settings
