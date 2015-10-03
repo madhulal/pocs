@@ -1,0 +1,97 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>axis</artifactId>
+        <groupId>org.mozanta.temperature.converter.webservice.soap</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>serverwar</artifactId>
+    <groupId>org.mozanta.temperature.converter.webservice.soap.axis</groupId>
+    <name>Webservice::SOAP::Temperature::Converter::Axis::Serverwar</name>
+    <packaging>war</packaging>
+
+
+    <properties>
+        <mozanta.soap.temperature.wsdl>MozantaTemperatureService.wsdl</mozanta.soap.temperature.wsdl>
+        <mozanta.soap.temperature.pojo>org.mozanta.temperature.TemperatureConverter</mozanta.soap.temperature.pojo>
+        <mozanta.soap.temperature.war>axis2Temperature</mozanta.soap.temperature.war>
+        <mozanta.soap.temperature.deploy.dir>/opt/apache-tomcat-7/webapps/</mozanta.soap.temperature.deploy.dir>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.mozanta.temperature</groupId>
+            <artifactId>business_logic</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${javax.servletapi.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2</artifactId>
+            <version>${axis2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2-transport-http</artifactId>
+            <version>${axis2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2-transport-local</artifactId>
+            <version>${axis2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2-xmlbeans</artifactId>
+            <version>${axis2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.axis2</groupId>
+                <artifactId>axis2-java2wsdl-maven-plugin</artifactId>
+                <version>${axis2.version}</version>
+                <configuration>
+                    <className>${mozanta.soap.temperature.pojo}</className>
+                    <outputFileName>${project.build.directory}/${mozanta.soap.temperature.wsdl}</outputFileName>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>java2wsdl</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.2.11.v20150529</version>
+                <configuration>
+                    <scanIntervalSeconds>10</scanIntervalSeconds>
+                </configuration>
+            </plugin>
+
+        </plugins>
+        <finalName>${mozanta.soap.temperature.war}</finalName>
+    </build>
+</project>

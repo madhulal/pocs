@@ -1,0 +1,77 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>axis</artifactId>
+        <groupId>org.mozanta.temperature.converter.webservice.soap</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>server</artifactId>
+    <name>Webservice::SOAP::Temperature::Converter::Axis::Server</name>
+    <packaging>jar</packaging>
+
+    <properties>
+        <mozanta.soap.temperature.wsdl>MozantaTemperatureConverterService.wsdl</mozanta.soap.temperature.wsdl>
+        <mozanta.soap.temperature.pojo>org.mozanta.temperature.TemperatureConverter</mozanta.soap.temperature.pojo>
+        <mozanta.soap.temperature.service.xml>src\main\resources\mozanta-temperature-service.xml
+        </mozanta.soap.temperature.service.xml>
+        <mozanta.soap.temperature.aar.file>MozantaTemperatureConverter</mozanta.soap.temperature.aar.file>
+
+        <!--Application server -->
+        <app.server.aar.deploy.dir>C:\Users\madhulal\work\tomcat7\webapps\axis2\WEB-INF\services
+        </app.server.aar.deploy.dir>
+
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.mozanta.temperature</groupId>
+            <artifactId>business_logic</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.axis2</groupId>
+                <artifactId>axis2-java2wsdl-maven-plugin</artifactId>
+                <version>${axis2.version}</version>
+                <configuration>
+                    <className>${mozanta.soap.temperature.pojo}</className>
+                    <outputFileName>${project.build.directory}/${mozanta.soap.temperature.wsdl}</outputFileName>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>java2wsdl</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.axis2</groupId>
+                <artifactId>axis2-aar-maven-plugin</artifactId>
+                <version>${axis2.version}</version>
+                <configuration>
+                    <wsdlFile>${project.build.directory}/${mozanta.soap.temperature.wsdl}</wsdlFile>
+                    <servicesXmlFile>${basedir}/${mozanta.soap.temperature.service.xml}</servicesXmlFile>
+                    <outputDirectory>${app.server.aar.deploy.dir}</outputDirectory>
+                    <aarName>${mozanta.soap.temperature.aar.file}</aarName>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>aar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

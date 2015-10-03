@@ -1,0 +1,142 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://org.apache.axis2/xsd"
+                  xmlns:ns="http://temperature.mozanta.org" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                  xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+                  targetNamespace="http://temperature.mozanta.org">
+    <wsdl:documentation>MozantaTemperatureService</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified"
+                   targetNamespace="http://temperature.mozanta.org">
+            <xs:element name="fahrenheitToCelsius">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="fahrenheit" type="xs:float"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="fahrenheitToCelsiusResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" type="xs:float"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="celsiusToFahrenheit">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="celsius" type="xs:float"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="celsiusToFahrenheitResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" type="xs:float"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="celsiusToFahrenheitRequest">
+        <wsdl:part name="parameters" element="ns:celsiusToFahrenheit"/>
+    </wsdl:message>
+    <wsdl:message name="celsiusToFahrenheitResponse">
+        <wsdl:part name="parameters" element="ns:celsiusToFahrenheitResponse"/>
+    </wsdl:message>
+    <wsdl:message name="fahrenheitToCelsiusRequest">
+        <wsdl:part name="parameters" element="ns:fahrenheitToCelsius"/>
+    </wsdl:message>
+    <wsdl:message name="fahrenheitToCelsiusResponse">
+        <wsdl:part name="parameters" element="ns:fahrenheitToCelsiusResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="MozantaTemperatureServicePortType">
+        <wsdl:operation name="celsiusToFahrenheit">
+            <wsdl:input message="ns:celsiusToFahrenheitRequest" wsaw:Action="urn:celsiusToFahrenheit"/>
+            <wsdl:output message="ns:celsiusToFahrenheitResponse" wsaw:Action="urn:celsiusToFahrenheitResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="fahrenheitToCelsius">
+            <wsdl:input message="ns:fahrenheitToCelsiusRequest" wsaw:Action="urn:fahrenheitToCelsius"/>
+            <wsdl:output message="ns:fahrenheitToCelsiusResponse" wsaw:Action="urn:fahrenheitToCelsiusResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="MozantaTemperatureServiceSoap11Binding" type="ns:MozantaTemperatureServicePortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="celsiusToFahrenheit">
+            <soap:operation soapAction="urn:celsiusToFahrenheit" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="fahrenheitToCelsius">
+            <soap:operation soapAction="urn:fahrenheitToCelsius" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="MozantaTemperatureServiceSoap12Binding" type="ns:MozantaTemperatureServicePortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="celsiusToFahrenheit">
+            <soap12:operation soapAction="urn:celsiusToFahrenheit" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="fahrenheitToCelsius">
+            <soap12:operation soapAction="urn:fahrenheitToCelsius" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="MozantaTemperatureServiceHttpBinding" type="ns:MozantaTemperatureServicePortType">
+        <http:binding verb="POST"/>
+        <wsdl:operation name="celsiusToFahrenheit">
+            <http:operation location="celsiusToFahrenheit"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="fahrenheitToCelsius">
+            <http:operation location="fahrenheitToCelsius"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="MozantaTemperatureService">
+        <wsdl:port name="MozantaTemperatureServiceHttpSoap11Endpoint"
+                   binding="ns:MozantaTemperatureServiceSoap11Binding">
+            <soap:address
+                    location="http://localhost:8090/axis2/services/MozantaTemperatureService.MozantaTemperatureServiceHttpSoap11Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="MozantaTemperatureServiceHttpSoap12Endpoint"
+                   binding="ns:MozantaTemperatureServiceSoap12Binding">
+            <soap12:address
+                    location="http://localhost:8090/axis2/services/MozantaTemperatureService.MozantaTemperatureServiceHttpSoap12Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="MozantaTemperatureServiceHttpEndpoint" binding="ns:MozantaTemperatureServiceHttpBinding">
+            <http:address
+                    location="http://localhost:8090/axis2/services/MozantaTemperatureService.MozantaTemperatureServiceHttpEndpoint/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,109 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>axis</artifactId>
+        <groupId>org.mozanta.temperature.converter.webservice.soap</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>client</artifactId>
+    <groupId>org.mozanta.temperature.converter.webservice.soap.axis</groupId>
+    <name>Webservice::SOAP::Temperature::Converter::Axis::Client</name>
+    <packaging>jar</packaging>
+
+    <properties>
+        <mozanta.soap.temperature.wsdl>src/main/resources/MozantaTemperatureService.wsdl
+        </mozanta.soap.temperature.wsdl>
+        <mozanta.soap.temperature.client.src.generated.dir>src/generated
+        </mozanta.soap.temperature.client.src.generated.dir>
+        <mozanta.soap.temperature.client.package>org.mozanta.temperature.client
+        </mozanta.soap.temperature.client.package>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>${maven.clean.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>auto-clean</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                        <configuration>
+                            <filesets>
+                                <fileset>
+                                    <directory>${mozanta.soap.temperature.client.src.generated.dir}</directory>
+                                </fileset>
+                            </filesets>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.axis2</groupId>
+                <artifactId>axis2-wsdl2code-maven-plugin</artifactId>
+                <version>${axis2.version}</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>wsdl2code</goal>
+                        </goals>
+                        <configuration>
+                            <generateServerSide>false</generateServerSide>
+                            <outputDirectory>${mozanta.soap.temperature.client.src.generated.dir}</outputDirectory>
+                            <packageName>${mozanta.soap.temperature.client.package}</packageName>
+                            <wsdlFile>${project.basedir}/${mozanta.soap.temperature.wsdl}</wsdlFile>
+                            <databindingName>${mozanta.soap.temperature.binding}</databindingName>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/generated/resources</directory>
+            </resource>
+            <resource>
+                <directory>src/generated/src</directory>
+            </resource>
+        </resources>
+
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2-kernel</artifactId>
+            <version>${axis2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2-transport-http</artifactId>
+            <version>${axis2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2-transport-local</artifactId>
+            <version>${axis2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2-xmlbeans</artifactId>
+            <version>${axis2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

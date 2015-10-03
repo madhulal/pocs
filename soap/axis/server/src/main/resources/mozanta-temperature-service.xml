@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<service name="MozantaTemperatureService">
+    <description>
+        Simple implementation of a Temperature Converter Service.
+    </description>
+
+    <parameter name="ServiceClass">org.mozanta.temperature.TemperatureConverter</parameter>
+
+    <operation name="celsiusToFahrenheit" mep="http://www.w3.org/ns/wsdl/in-out"
+               namespace="http://services.mozanta.com/xsd">
+        <actionMapping>http://services.mozanta.com/xsd/celsiusToFahrenheit</actionMapping>
+        <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+    </operation>
+
+    <operation name="fahrenheitToCelsius" mep="http://www.w3.org/ns/wsdl/in-out"
+               namespace="http://services.mozanta.com/xsd/">
+        <actionMapping>http://services.mozanta.com/xsd/fahrenheitToCelsius</actionMapping>
+        <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+    </operation>
+
+
+</service>
