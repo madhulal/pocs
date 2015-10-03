@@ -15,23 +15,23 @@ To run the app, follow these steps.
 2. From the project folder (src/main/webapp), execute the following command:
 
   ```shell
-  npm install
+  sudo npm install
   ```
 3. Ensure that [Gulp](http://gulpjs.com/) is installed. If you need to install it, use the following command:
 
   ```shell
-  npm install -g gulp
+  sudo npm install -g gulp
   ```
 4. Ensure that [jspm](http://jspm.io/) is installed. If you need to install it, use the following command:
 
   ```shell
-  npm install -g jspm
+  sudo npm install -g jspm
   ```
   > **Note:** jspm queries GitHub to install semver packages, but GitHub has a rate limit on anonymous API requests. It is advised that you configure jspm with your GitHub credentials in order to avoid problems. You can do this by executing `jspm registry config github` and following the prompts.
 5. Install the client-side dependencies with jspm:
 
   ```shell
-  jspm install -y
+  sudo jspm install -y
   ```
   >**Note:** Windows users, if you experience an error of "unknown command unzip" you can solve this problem by doing `npm install -g unzip` and then re-running `jspm install`.
 6. To run the app, move to src/main/webapp execute the following command:
