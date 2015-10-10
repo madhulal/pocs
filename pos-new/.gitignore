@@ -15,3 +15,5 @@ dist
 *.classpath
 *.project
 .settings
+data
+logs

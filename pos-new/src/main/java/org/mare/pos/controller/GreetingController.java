@@ -1,4 +1,4 @@
-package org.mare.hello;
+package org.mare.pos.controller;
 
 /**
  * Created by Madhulal M G on 4/10/15.
