@@ -38,6 +38,7 @@ public class UserController {
         binder.addValidators(userCreateFormValidator);
     }
 
+
     @PreAuthorize("@currentUserServiceImpl.canAccessUser(principal, #id)")
     @RequestMapping("/user/{id}")
     public ModelAndView getUserPage(@PathVariable Long id) {
@@ -46,15 +47,19 @@ public class UserController {
                 .orElseThrow(() -> new NoSuchElementException(String.format("User=%s not found", id))));
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
-    @RequestMapping(value = "/user/create", method = RequestMethod.GET)
+    @RequestMapping("/organization/admin/users")
+    public ModelAndView getOrganizationUsersPage() {
+        LOGGER.debug("Getting users page");
+        return new ModelAndView("users", "users", userService.getAllUsers());
+    }
+
+    @RequestMapping(value = "/organization/admin/user/create", method = RequestMethod.GET)
     public ModelAndView getUserCreatePage() {
         LOGGER.debug("Getting user create form");
         return new ModelAndView("user_create", "form", new UserCreateForm());
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
-    @RequestMapping(value = "/user/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/organization/admin/user/create", method = RequestMethod.POST)
     public String handleUserCreateForm(@Valid @ModelAttribute("form") UserCreateForm form, BindingResult bindingResult) {
         LOGGER.debug("Processing user create form={}, bindingResult={}", form, bindingResult);
         if (bindingResult.hasErrors()) {
@@ -69,6 +74,40 @@ public class UserController {
             LOGGER.warn("Exception occurred when trying to save the user, assuming duplicate email", e);
             bindingResult.reject("email.exists", "Email already exists");
             return "user_create";
+        }
+        // ok, redirect
+        return "redirect:/organization/admin/users";
+    }
+
+
+    @RequestMapping("/store/admin/users")
+    public ModelAndView getStoreUsersPage() {
+        LOGGER.debug("Getting users page");
+        return new ModelAndView("users", "users", userService.getAllUsers());
+    }
+
+
+    @RequestMapping(value = "/store/admin/user/create", method = RequestMethod.GET)
+    public ModelAndView getStoreUserCreatePage() {
+        LOGGER.debug("Getting user create form");
+        return new ModelAndView("store_user_create", "form", new UserCreateForm());
+    }
+
+    @RequestMapping(value = "/store/admin/user/create", method = RequestMethod.POST)
+    public String handleStoreUserCreatePage(@Valid @ModelAttribute("form") UserCreateForm form, BindingResult bindingResult) {
+        LOGGER.debug("Processing user create form={}, bindingResult={}", form, bindingResult);
+        if (bindingResult.hasErrors()) {
+            // failed validation
+            return "store_user_create";
+        }
+        try {
+            userService.create(form);
+        } catch (DataIntegrityViolationException e) {
+            // probably email already exists - very rare case when multiple admins are adding same user
+            // at the same time and form validation has passed for more than one of them.
+            LOGGER.warn("Exception occurred when trying to save the user, assuming duplicate email", e);
+            bindingResult.reject("email.exists", "Email already exists");
+            return "store_user_create";
         }
         // ok, redirect
         return "redirect:/users";

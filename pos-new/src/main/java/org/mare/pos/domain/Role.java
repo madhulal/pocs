@@ -5,6 +5,13 @@ package org.mare.pos.domain;
  */
 public enum Role {
 
-    USER, ADMIN
+    USER(0), STORE_ADMIN(1), ORGANIZATION_ADMIN(2), SUPER_ADMIN(3);
 
+    private final int value;
+
+    Role(int value) {
+        this.value = value;
+    }
+
+    public int getValue() { return value; }
 }

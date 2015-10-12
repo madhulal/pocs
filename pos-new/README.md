@@ -9,5 +9,6 @@ A spring based pos application using hsqldb
 2. Spring security(demo@localhost/demo)
 
 ###Checkout, run
-./gradlew bootRun
+./gradlew bootRun(linux)
+gradlew bootRun(windows)
 

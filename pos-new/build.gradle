@@ -38,6 +38,12 @@ task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
 }
 
+task deleteFiles(type: Delete) {
+    delete fileTree('loga') {
+        include '**/*.log'
+    }
+}
+
 applicationDefaultJvmArgs = [
         "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"
 ]

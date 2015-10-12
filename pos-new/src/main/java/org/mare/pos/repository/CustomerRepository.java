@@ -1,4 +1,4 @@
-package org.mare.pos.repositories;
+package org.mare.pos.repository;
 
 /**
  * Created by Madhulal M G on 7/10/15.

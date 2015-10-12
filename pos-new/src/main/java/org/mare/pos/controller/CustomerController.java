@@ -1,7 +1,7 @@
 package org.mare.pos.controller;
 
 import org.mare.pos.domain.Customer;
-import org.mare.pos.repositories.CustomerRepository;
+import org.mare.pos.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

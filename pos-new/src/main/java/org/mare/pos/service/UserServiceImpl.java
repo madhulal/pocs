@@ -5,7 +5,7 @@ package org.mare.pos.service;
  */
 import org.mare.pos.domain.User;
 import org.mare.pos.form.UserCreateForm;
-import org.mare.pos.repositories.UserRepository;
+import org.mare.pos.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

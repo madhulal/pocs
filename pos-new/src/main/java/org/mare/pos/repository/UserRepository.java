@@ -1,4 +1,4 @@
-package org.mare.pos.repositories;
+package org.mare.pos.repository;
 
 import org.mare.pos.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;

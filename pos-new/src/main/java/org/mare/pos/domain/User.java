@@ -23,6 +23,18 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @ManyToOne
+    @JoinColumn(name = "organization_id", referencedColumnName = "id", nullable = false)
+    private Organization organization;
+
+    @ManyToOne
+    @JoinColumn(name = "store_id", referencedColumnName = "id")
+    private Store store;
+
+    @OneToOne
+    @JoinColumn(name = "contact_info_id", referencedColumnName = "id")
+    private ContactInfo contactInfo;
+
     public Long getId() {
         return id;
     }
@@ -55,6 +67,30 @@ public class User {
         this.role = role;
     }
 
+    public Organization getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(Organization organization) {
+        this.organization = organization;
+    }
+
+    public Store getStore() {
+        return store;
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
+    }
+
+    public ContactInfo getContactInfo() {
+        return contactInfo;
+    }
+
+    public void setContactInfo(ContactInfo contactInfo) {
+        this.contactInfo = contactInfo;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -62,6 +98,9 @@ public class User {
                 ", email='" + email.replaceFirst("@.*", "@***") +
                 ", passwordHash='" + passwordHash.substring(0, 10) +
                 ", role=" + role +
+                ", organization=" + organization +
+                ", store=" + store +
+                ", contactInfo=" + contactInfo +
                 '}';
     }
 }
